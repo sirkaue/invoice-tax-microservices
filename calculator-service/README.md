@@ -16,11 +16,15 @@ arquitetura hexagonal para cálculo flexível e extensível de impostos.
 O projeto adota a arquitetura hexagonal, separando o domínio, casos de uso, portas e adaptadores para 
 máxima modularidade e testabilidade.
 
+Organizado em três camadas principais:
+
+`application`, `domain` e `infra`
+
 ### Estrutura de Pastas
 ```plaintext
 .
 └── com.sirkaue.taxcalculatorapistrategy/
-    ├── application/               # Camada de aplicação (use cases e contextos)
+    ├── application/
     │   ├── context/
     │   │   ├── TaxContext.java
     │   │   └── TaxContextImpl.java
@@ -28,27 +32,36 @@ máxima modularidade e testabilidade.
     │   │   ├── in/
     │   │   │   └── CalculateTaxUseCase.java
     │   │   └── out/
-    │   │       └── TaxStrategy.java
+    │   │       ├── factory/
+    │   │       │   └── TaxStrategyFactory.java
+    │   │       └── strategy/
+    │   │           └── TaxStrategy.java
     │   └── usecase/
     │       └── CalculateTaxUseCaseImpl.java
-    ├── domain/                    # Domínio rico e enums
+    ├── domain/
     │   └── enums/
     │       └── TaxType.java
-    ├── infra/                     # Infraestrutura e adaptadores externos
+    ├── infra/
     │   ├── adapters/
-    │   │   ├── in/                # Adaptadores de entrada (controllers, DTOs)
+    │   │   ├── in/
     │   │   │   ├── controller/
     │   │   │   │   └── TaxController.java
-    │   │   │   └── dto/
-    │   │   │       ├── TaxRequest.java
-    │   │   │       └── TaxResponse.java
-    │   │   └── out/               # Adaptadores de saída (implementações de estratégia)
-    │   │       ├── ICMSStrategy.java
-    │   │       ├── IRStrategy.java
-    │   │       └── ISSStrategy.java
+    │   │   │   ├── dto/
+    │   │   │   │   ├── ErrorResponse.java
+    │   │   │   │   ├── TaxRequest.java
+    │   │   │   │   └── TaxResponse.java
+    │   │   │   └── exception/
+    │   │   │       └── GlobalExceptionHandler.java
+    │   │   └── out/
+    │   │       ├── factory/
+    │   │       │   └── TaxStrategyFactoryImpl
+    │   │       └── strategy/
+    │   │           ├── ICMSStrategy.java
+    │   │           ├── IRStrategy.java
+    │   │           └── ISSStrategy.java
     │   └── config/
-    │       └── CalculateTaxConfg.java
-    └── TaxCalculatorApiStrategyApplication.java  # Classe principal Spring Boot
+    │       └── CalculateTaxConfig
+    └── TaxCalculatorApiStrategyApplication.java
 ```
 
 ## Componentes Principais
