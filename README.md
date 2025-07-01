@@ -42,7 +42,7 @@ Simula uma API de cálculo de tributos, reutilizada de um projeto anterior. Seu 
 A imagem abaixo representa de forma conceitual como os dois microsserviços se comunicam entre si:
 
 <p align="center">
-  <img src="img/diagrama-conceitual.png" alt="Diagrama Conceitual da Arquitetura" style="width:30%;"/>
+  <img src="img/diagrama-conceitual.png" alt="Diagrama Conceitual da Arquitetura" style="width:60%;"/>
 </p>
 
 ---
