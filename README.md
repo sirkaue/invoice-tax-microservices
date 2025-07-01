@@ -72,6 +72,44 @@ invoice-tax-microservices/
 
 ---
 
+## Endpoints Disponíveis
+
+### 📌 Processar faturas
+**`POST /invoices`**  
+Processa faturas com base no tipo e no valor fornecido.
+
+> ⚠️ O provider roda na porta 8080.
+> 
+> ⚠️ O consumer roda na porta 8081.
+> 
+> ⚠️ Os endpoints do provider, caso queira testar, estão documentados no README do provider (`calculator-service`).
+
+
+📥 **Requisição (JSON)**
+```json
+{
+  "client": "João Silva",
+  "amount": 1000.00,
+  "taxType": ["ICMS", "IR", "ISS"]
+}
+```
+📥 **Resposta (JSON)**
+```json
+{
+  "client": "João Silva",
+  "grossAmount": 1000,
+  "taxes": {
+    "icms": 170,
+    "iss": 50,
+    "ir": 275,
+    "totalTaxes": 495
+  },
+  "netAmount": 1495
+}
+```
+
+---
+
 ## 🐳 Como Rodar com Docker
 
 Este projeto utiliza um **Dockerfile multi-stage**, separando as etapas de build e runtime para gerar
