@@ -1,0 +1,8 @@
+services:
+  tax-calculator-service:
+    build:
+      context: .
+    image: tax-calculator-service:dev
+    container_name: tax-calculator-service
+    ports:
+      - "8080:8080"

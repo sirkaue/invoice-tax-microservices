@@ -1,0 +1,29 @@
+services:
+
+  calculator-service:
+    build:
+      context: ./calculator-service
+    container_name: calculator-service
+    image: calculator-service:dev
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+  invoice-service:
+    build:
+      context: ./invoice-service
+    container_name: invoice-service
+    image: invoice-service:dev
+    ports:
+      - "8081:8081"
+    environment:
+      - CLIENTS_TAX_CALCULATOR_URL=http://calculator-service:8080
+    networks:
+      - backend
+    depends_on:
+      - calculator-service
+
+networks:
+  backend:
+    driver: bridge
